@@ -10,3 +10,5 @@
    | `git branch`                | Lista ou cria branches              |
    | `git merge`                 | Mescla branches                     |
    | `git log --oneline --graph` | Histórico compacto                  |
+
+   
