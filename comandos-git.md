@@ -1,4 +1,3 @@
-<<<<<<< HEAD
    | Comando                     | Descrição                           |
    | --------------------------- | ----------------------------------- |
    | `git init`                  | Inicializa um repositório vazio     |
@@ -11,6 +10,3 @@
    | `git branch`                | Lista ou cria branches              |
    | `git merge`                 | Mescla branches                     |
    | `git log --oneline --graph` | Histórico compacto                  |
-=======
-
->>>>>>> parent of 668fe38 (Primeiro commit de base)
