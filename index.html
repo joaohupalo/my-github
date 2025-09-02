@@ -273,5 +273,224 @@
        </ol>
    </div>
 </section>
+<section id="conflitos" class="conflitos-section">
+   <h2>Resolução de Conflitos</h2>
+   
+   <div class="conflito-item">
+       <h3>O que são Conflitos no Git?</h3>
+       <p>Conflitos ocorrem quando o Git não consegue automaticamente mesclar mudanças de diferentes branches ou commits. Isso acontece quando as mesmas linhas de um arquivo foram modificadas de formas diferentes em branches distintas.</p>
+       
+       <div class="exemplo-conflito">
+           <h4>Situação típica de conflito:</h4>
+           <ul>
+               <li>Desenvolvedor A modifica a linha 10 do arquivo index.html</li>
+               <li>Desenvolvedor B também modifica a linha 10 do mesmo arquivo</li>
+               <li>Ao fazer merge, o Git não sabe qual versão manter</li>
+           </ul>
+       </div>
+   </div>
+
+   <div class="conflito-item">
+       <h3>Quando Conflitos Ocorrem</h3>
+       
+       <div class="situacao">
+           <h4>Durante Merge</h4>
+           <p>Ao tentar unir duas branches que modificaram as mesmas linhas de código.</p>
+       </div>
+
+       <div class="situacao">
+           <h4>Durante Pull</h4>
+           <p>Quando você tenta baixar mudanças do repositório remoto que conflitam com seu trabalho local.</p>
+       </div>
+
+       <div class="situacao">
+           <h4>Durante Rebase</h4>
+           <p>Ao aplicar commits de uma branch sobre outra, linha por linha.</p>
+       </div>
+
+       <div class="situacao">
+           <h4>Durante Cherry-pick</h4>
+           <p>Quando você aplica um commit específico que conflita com o estado atual.</p>
+       </div>
+   </div>
+
+   <div class="conflito-item">
+       <h3>Como Identificar Conflitos</h3>
+       
+       <div class="identificacao">
+           <h4>Mensagem de Erro</h4>
+           <code>CONFLICT (content): Merge conflict in arquivo.html</code>
+           <p>O Git informa claramente quais arquivos têm conflitos.</p>
+       </div>
+
+       <div class="identificacao">
+           <h4>Status do Repositório</h4>
+           <code>git status</code>
+           <p>Mostra arquivos marcados como "both modified" ou "unmerged paths".</p>
+       </div>
+
+       <div class="identificacao">
+           <h4>Marcadores no Arquivo</h4>
+           <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+&lt;h1&gt;Título da Branch Atual&lt;/h1&gt;
+=======
+&lt;h1&gt;Título da Outra Branch&lt;/h1&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; nome-da-branch</code></pre>
+           <p>O Git adiciona esses marcadores para mostrar as versões conflitantes.</p>
+       </div>
+   </div>
+
+   <div class="conflito-item">
+       <h3>Como Resolver Conflitos</h3>
+       
+       <div class="passo-resolucao">
+           <h4>1. Identificar Arquivos Conflitantes</h4>
+           <code>git status</code>
+           <p>Lista todos os arquivos que precisam ser resolvidos.</p>
+       </div>
+
+       <div class="passo-resolucao">
+           <h4>2. Abrir o Arquivo</h4>
+           <p>Use seu editor de código preferido para visualizar os conflitos.</p>
+       </div>
+
+       <div class="passo-resolucao">
+           <h4>3. Escolher a Resolução</h4>
+           <p>Você pode:</p>
+           <ul>
+               <li>Manter apenas a versão HEAD (branch atual)</li>
+               <li>Manter apenas a versão incoming (outra branch)</li>
+               <li>Combinar ambas as versões</li>
+               <li>Escrever uma solução completamente nova</li>
+           </ul>
+       </div>
+
+       <div class="passo-resolucao">
+           <h4>4. Remover Marcadores</h4>
+           <p>Delete todas as linhas com <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code> e <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>.</p>
+       </div>
+
+       <div class="passo-resolucao">
+           <h4>5. Testar a Resolução</h4>
+           <p>Certifique-se de que o código funciona corretamente após a resolução.</p>
+       </div>
+
+       <div class="passo-resolucao">
+           <h4>6. Adicionar e Commitar</h4>
+           <code>git add arquivo-resolvido.html</code><br>
+           <code>git commit -m "resolve: conflito na seção principal"</code>
+           <p>Marque o conflito como resolvido e finalize o merge.</p>
+       </div>
+   </div>
+
+   <div class="conflito-item">
+       <h3>Ferramentas para Resolução</h3>
+       
+       <div class="ferramenta">
+           <h4>Editor de Código</h4>
+           <p><strong>VS Code, Sublime, Atom:</strong> Muitos editores destacam conflitos e oferecem botões para aceitar mudanças rapidamente.</p>
+       </div>
+
+       <div class="ferramenta">
+           <h4>Git Mergetool</h4>
+           <code>git mergetool</code>
+           <p>Abre uma ferramenta visual para resolver conflitos (como vimdiff, meld, ou kdiff3).</p>
+       </div>
+
+       <div class="ferramenta">
+           <h4>GitHub Desktop</h4>
+           <p>Interface gráfica que facilita a visualização e resolução de conflitos.</p>
+       </div>
+
+       <div class="ferramenta">
+           <h4>IDEs</h4>
+           <p><strong>IntelliJ, Eclipse:</strong> IDEs oferecem ferramentas avançadas de merge com interface gráfica.</p>
+       </div>
+   </div>
+
+   <div class="conflito-item">
+       <h3>Comandos Úteis Durante Conflitos</h3>
+       
+       <div class="comando-conflito">
+           <h4>Abortar Merge</h4>
+           <code>git merge --abort</code>
+           <p>Cancela o merge e volta ao estado anterior.</p>
+       </div>
+
+       <div class="comando-conflito">
+           <h4>Visualizar Conflito</h4>
+           <code>git diff</code>
+           <p>Mostra as diferenças entre as versões conflitantes.</p>
+       </div>
+
+       <div class="comando-conflito">
+           <h4>Ver Histórico do Arquivo</h4>
+           <code>git log --follow arquivo.html</code>
+           <p>Mostra o histórico de mudanças do arquivo específico.</p>
+       </div>
+
+       <div class="comando-conflito">
+           <h4>Continuar Rebase</h4>
+           <code>git rebase --continue</code>
+           <p>Continua o rebase após resolver conflitos.</p>
+       </div>
+   </div>
+
+   <div class="conflito-item">
+       <h3>Estratégias de Prevenção</h3>
+       
+       <div class="prevencao">
+           <h4>Comunicação da Equipe</h4>
+           <p>Converse com a equipe sobre quem está trabalhando em quais arquivos.</p>
+       </div>
+
+       <div class="prevencao">
+           <h4>Pull Frequente</h4>
+           <code>git pull origin develop</code>
+           <p>Mantenha sua branch atualizada com as mudanças mais recentes.</p>
+       </div>
+
+       <div class="prevencao">
+           <h4>Commits Pequenos</h4>
+           <p>Faça commits menores e mais frequentes para reduzir o escopo dos conflitos.</p>
+       </div>
+
+       <div class="prevencao">
+           <h4>Branches de Curta Duração</h4>
+           <p>Evite branches que ficam muito tempo sem ser mergeadas.</p>
+       </div>
+
+       <div class="prevencao">
+           <h4>Revisão de Código</h4>
+           <p>Use Pull Requests para revisar mudanças antes do merge final.</p>
+       </div>
+
+       <div class="prevencao">
+           <h4>Formatação Consistente</h4>
+           <p>Use ferramentas como Prettier ou ESLint para manter formatação uniforme.</p>
+       </div>
+   </div>
+
+   <div class="conflito-item">
+       <h3>Exemplo Prático de Resolução</h3>
+       
+       <div class="exemplo-pratico">
+           <h4>Antes da Resolução:</h4>
+           <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+&lt;h1&gt;Guia Completo de Git&lt;/h1&gt;
+&lt;p&gt;Este é um guia sobre controle de versão.&lt;/p&gt;
+=======
+&lt;h1&gt;Manual de Git e GitHub&lt;/h1&gt;
+&lt;p&gt;Manual prático para desenvolvedores.&lt;/p&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feat/nova-introducao</code></pre>
+           
+           <h4>Após a Resolução:</h4>
+           <pre><code>&lt;h1&gt;Guia Completo de Git e GitHub&lt;/h1&gt;
+&lt;p&gt;Manual prático sobre controle de versão para desenvolvedores.&lt;/p&gt;</code></pre>
+           
+           <p>Neste exemplo, combinamos o melhor de ambas as versões: o título mais completo da primeira versão com a descrição mais específica da segunda.</p>
+       </div>
+   </div>
+</section>
 </body>
 </html>
