@@ -84,5 +84,194 @@
        </div>
    </div>
 </section>
+<section id="fluxo" class="fluxo-section">
+   <h2>Fluxo de Trabalho Git/GitHub</h2>
+   
+   <div class="fluxo-item">
+       <h3>Estados dos Arquivos no Git</h3>
+       <p>No Git, os arquivos podem estar em três estados principais:</p>
+       
+       <div class="estados">
+           <div class="estado">
+               <h4>Working Directory</h4>
+               <p>Área onde você edita os arquivos. Mudanças ainda não rastreadas pelo Git.</p>
+           </div>
+           
+           <div class="estado">
+               <h4>Staging Area (Index)</h4>
+               <p>Área intermediária onde ficam as mudanças preparadas para o próximo commit.</p>
+           </div>
+           
+           <div class="estado">
+               <h4>Repository</h4>
+               <p>Onde o Git armazena permanentemente as versões dos arquivos após o commit.</p>
+           </div>
+       </div>
+   </div>
+
+   <div class="fluxo-item">
+       <h3>Comandos Básicos do Fluxo</h3>
+       
+       <div class="comando">
+           <h4>Iniciando um Repositório</h4>
+           <code>git init</code>
+           <p>Inicializa um novo repositório Git no diretório atual.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Verificando Status</h4>
+           <code>git status</code>
+           <p>Mostra o estado atual dos arquivos (modificados, staging, etc.).</p>
+       </div>
+
+       <div class="comando">
+           <h4>Adicionando Arquivos</h4>
+           <code>git add arquivo.txt</code> ou <code>git add .</code>
+           <p>Move arquivos para a staging area. O ponto adiciona todos os arquivos modificados.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Fazendo Commit</h4>
+           <code>git commit -m "mensagem do commit"</code>
+           <p>Salva as mudanças da staging area no repositório com uma mensagem descritiva.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Visualizando Histórico</h4>
+           <code>git log</code> ou <code>git log --oneline</code>
+           <p>Mostra o histórico de commits do projeto.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Verificando Diferenças</h4>
+           <code>git diff</code>
+           <p>Mostra as mudanças entre working directory e staging area.</p>
+       </div>
+   </div>
+
+   <div class="fluxo-item">
+       <h3>Trabalhando com Repositórios Remotos</h3>
+       
+       <div class="comando">
+           <h4>Clonando Repositório</h4>
+           <code>git clone https://github.com/user/repo.git</code>
+           <p>Cria uma cópia local de um repositório remoto.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Enviando Mudanças</h4>
+           <code>git push origin main</code>
+           <p>Envia commits locais para o repositório remoto.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Baixando Atualizações</h4>
+           <code>git pull origin main</code>
+           <p>Baixa e integra mudanças do repositório remoto.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Verificando Remotos</h4>
+           <code>git fetch</code>
+           <p>Baixa mudanças sem integrar automaticamente.</p>
+       </div>
+   </div>
+
+   <div class="fluxo-item">
+       <h3>Workflow com Branches</h3>
+       
+       <div class="comando">
+           <h4>Criando Branch</h4>
+           <code>git branch nome-da-branch</code>
+           <p>Cria uma nova branch baseada na branch atual.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Mudando de Branch</h4>
+           <code>git checkout nome-da-branch</code>
+           <p>Muda para a branch especificada.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Criando e Mudando</h4>
+           <code>git checkout -b nova-branch</code>
+           <p>Cria uma nova branch e muda para ela imediatamente.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Listando Branches</h4>
+           <code>git branch</code> ou <code>git branch -a</code>
+           <p>Lista branches locais ou todas as branches (locais e remotas).</p>
+       </div>
+
+       <div class="comando">
+           <h4>Fazendo Merge</h4>
+           <code>git merge nome-da-branch</code>
+           <p>Integra mudanças de uma branch na branch atual.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Deletando Branch</h4>
+           <code>git branch -d nome-da-branch</code>
+           <p>Remove uma branch local após o merge.</p>
+       </div>
+   </div>
+
+   <div class="fluxo-item">
+       <h3>GitHub Flow - Fluxo Recomendado</h3>
+       
+       <div class="passo">
+           <h4>1. Criar Branch</h4>
+           <p>Para cada nova feature ou correção, crie uma branch específica.</p>
+       </div>
+
+       <div class="passo">
+           <h4>2. Fazer Commits</h4>
+           <p>Adicione commits com mensagens claras e semânticas.</p>
+       </div>
+
+       <div class="passo">
+           <h4>3. Abrir Pull Request</h4>
+           <p>No GitHub, abra um PR para revisar e discutir as mudanças.</p>
+       </div>
+
+       <div class="passo">
+           <h4>4. Revisar Código</h4>
+           <p>Outros desenvolvedores revisam e sugerem melhorias.</p>
+       </div>
+
+       <div class="passo">
+           <h4>5. Fazer Merge</h4>
+           <p>Após aprovação, as mudanças são integradas à branch principal.</p>
+       </div>
+
+       <div class="passo">
+           <h4>6. Deletar Branch</h4>
+           <p>Remove a branch da feature após o merge bem-sucedido.</p>
+       </div>
+   </div>
+
+   <div class="fluxo-item">
+       <h3>Pull Requests no GitHub</h3>
+       <p>Pull Requests (PRs) são o coração da colaboração no GitHub. Eles permitem:</p>
+       
+       <ul>
+           <li><strong>Revisão de código:</strong> Outros desenvolvedores podem revisar suas mudanças</li>
+           <li><strong>Discussão:</strong> Comentários e sugestões sobre o código</li>
+           <li><strong>Testes automatizados:</strong> Execução de CI/CD antes do merge</li>
+           <li><strong>Histórico:</strong> Documentação das mudanças e decisões tomadas</li>
+       </ul>
+       
+       <h4>Como criar um PR:</h4>
+       <ol>
+           <li>Push da sua branch para o GitHub</li>
+           <li>Navegar até o repositório no GitHub</li>
+           <li>Clicar em "Compare & pull request"</li>
+           <li>Adicionar título e descrição detalhada</li>
+           <li>Selecionar reviewers e assignees</li>
+           <li>Criar o pull request</li>
+       </ol>
+   </div>
+</section>
 </body>
 </html>
