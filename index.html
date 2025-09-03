@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceitos Git/Github</title>
+    <style>
+/* Reset e configurações base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Configurações gerais das seções */
+section {
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideUp 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Títulos principais */
+h2 {
+    color: #2c3e50;
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
+
+/* Títulos secundários */
+h3 {
+    color: #34495e;
+    font-size: 1.8em;
+    font-weight: 600;
+    margin: 25px 0 15px 0;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-left: 5px solid #667eea;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+h3:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+}
+
+h4 {
+    color: #495057;
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 20px 0 10px 0;
+}
+
+/* Parágrafos */
+p {
+    margin-bottom: 15px;
+    color: #555;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+/* Listas */
+ul, ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 1.05em;
+}
+
+li strong {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Items de conceito */
+.conceito-item {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.conceito-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Comparação Git vs GitHub */
+.comparacao {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.git-side, .github-side {
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #e9ecef;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.git-side:hover, .github-side:hover {
+    border-color: #667eea;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+}
+
+.git-side::before {
+    content: '🔧';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #667eea;
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    font-size: 1.2em;
+}
+
+.github-side::before {
+    content: '☁️';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #764ba2;
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    font-size: 1.2em;
+}
+
+/* Termos essenciais */
+.termo {
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid #28a745;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.termo:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.2);
+}
+
+/* Estados do Git */
+.estados {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.estado {
+    background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+    border: 2px solid #ffc107;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.estado::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 193, 7, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    opacity: 0;
+}
+
+.estado:hover::before {
+    opacity: 1;
+    animation: shine 1.5s ease-in-out;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.estado:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(255, 193, 7, 0.3);
+}
+
+/* Comandos */
+.comando {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid #007bff;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.comando:hover {
+    background: #e9ecef;
+    transform: translateX(3px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+}
+
+.comando code {
+    background: #2d3748;
+    color: #e2e8f0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+    font-size: 0.95em;
+    display: inline-block;
+    margin: 5px 0;
+    border: 1px solid #4a5568;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Passos do workflow */
+.passo {
+    background: linear-gradient(135deg, #e8f5e8, #f0fff0);
+    border: 2px solid #28a745;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.passo::before {
+    content: '✓';
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #28a745;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.passo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.2);
+}
+
+/* Items de fluxo */
+.fluxo-item {
+    margin-bottom: 40px;
+}
+
+/* Items de conflito */
+.conflito-item {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Situações de conflito */
+.situacao {
+    background: linear-gradient(135deg, #fff5f5, #fed7d7);
+    border: 2px solid #fc8181;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.situacao:hover {
+    background: linear-gradient(135deg, #fed7d7, #feb2b2);
+    transform: translateX(5px);
+}
+
+/* Identificação de conflitos */
+.identificacao {
+    background: #f7fafc;
+    border: 2px solid #cbd5e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.identificacao:hover {
+    border-color: #4299e1;
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.15);
+}
+
+/* Passos de resolução */
+.passo-resolucao {
+    background: linear-gradient(135deg, #f0fff4, #e6fffa);
+    border-left: 5px solid #38a169;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.passo-resolucao:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(56, 161, 105, 0.2);
+}
+
+/* Ferramentas */
+.ferramenta {
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.ferramenta:hover {
+    border-color: #667eea;
+    box-shadow: 0 6px 18px rgba(102, 126, 234, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Comandos de conflito */
+.comando-conflito {
+    background: linear-gradient(135deg, #fff8e1, #ffecb3);
+    border-left: 4px solid #ffa000;
+    border-radius: 8px;
+    padding: 18px;
+    margin-bottom: 18px;
+    transition: all 0.3s ease;
+}
+
+.comando-conflito:hover {
+    background: linear-gradient(135deg, #ffecb3, #ffd54f);
+    transform: translateX(3px);
+}
+
+/* Prevenção */
+.prevencao {
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border: 2px solid #2196f3;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 18px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.prevencao::before {
+    content: '💡';
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 1.5em;
+}
+
+.prevencao:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.2);
+}
+
+/* Exemplo prático */
+.exemplo-pratico {
+    background: #f8f9fa;
+    border: 2px solid #6c757d;
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 20px;
+}
+
+.exemplo-conflito {
+    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+    border: 2px solid #ff9800;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+}
+
+/* Blocos de código */
+pre {
+    background: #2d3748;
+    color: #e2e8f0;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 15px 0;
+    border: 1px solid #4a5568;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+pre code {
+    background: none !important;
+    padding: 0 !important;
+    color: inherit;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    section {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .comparacao {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .estados {
+        grid-template-columns: 1fr;
+    }
+    
+    h2 {
+        font-size: 2em;
+    }
+    
+    h3 {
+        font-size: 1.5em;
+        padding: 12px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.8em;
+    }
+    
+    h3 {
+        font-size: 1.3em;
+    }
+    
+    .passo::before {
+        display: none;
+    }
+    
+    .git-side::before,
+    .github-side::before {
+        display: none;
+    }
+}
+
+/* Animações de entrada para diferentes seções */
+.conceitos-section {
+    animation-delay: 0.1s;
+}
+
+.fluxo-section {
+    animation-delay: 0.2s;
+}
+
+.conflitos-section {
+    animation-delay: 0.3s;
+}
+
+/* Scroll suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Melhorias de acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+    </style>
+</head>
+<body>
+    <section id="conceitos" class="conceitos-section">
+   <h2>Conceitos Fundamentais: Git e GitHub</h2>
+   
+   <div class="conceito-item">
+       <h3>O que é Git?</h3>
+       <p>Git é um sistema de controle de versão distribuído que permite rastrear mudanças em arquivos e coordenar o trabalho entre múltiplos desenvolvedores. Criado por Linus Torvalds em 2005, o Git mantém um histórico completo de todas as alterações feitas no projeto.</p>
+       
+       <h4>Características principais:</h4>
+       <ul>
+           <li><strong>Distribuído:</strong> Cada desenvolvedor possui uma cópia completa do histórico</li>
+           <li><strong>Velocidade:</strong> Operações locais são extremamente rápidas</li>
+           <li><strong>Integridade:</strong> Todos os dados são verificados por checksums</li>
+           <li><strong>Branching:</strong> Sistema de ramificação leve e eficiente</li>
+       </ul>
+   </div>
+
+   <div class="conceito-item">
+       <h3>O que é GitHub?</h3>
+       <p>GitHub é uma plataforma de hospedagem de código baseada na web que utiliza Git para controle de versão. Oferece funcionalidades colaborativas que facilitam o trabalho em equipe e o gerenciamento de projetos.</p>
+       
+       <h4>Principais funcionalidades:</h4>
+       <ul>
+           <li><strong>Repositórios:</strong> Armazenamento seguro de projetos na nuvem</li>
+           <li><strong>Pull Requests:</strong> Sistema de revisão e integração de código</li>
+           <li><strong>Issues:</strong> Rastreamento de bugs e funcionalidades</li>
+           <li><strong>Colaboração:</strong> Ferramentas para trabalho em equipe</li>
+       </ul>
+   </div>
+
+   <div class="conceito-item">
+       <h3>Git vs GitHub</h3>
+       <div class="comparacao">
+           <div class="git-side">
+               <h4>Git</h4>
+               <ul>
+                   <li>Sistema de controle de versão</li>
+                   <li>Funciona localmente</li>
+                   <li>Software livre e gratuito</li>
+                   <li>Interface de linha de comando</li>
+               </ul>
+           </div>
+           
+           <div class="github-side">
+               <h4>GitHub</h4>
+               <ul>
+                   <li>Plataforma de hospedagem</li>
+                   <li>Baseado na nuvem</li>
+                   <li>Serviço com planos gratuitos/pagos</li>
+                   <li>Interface web e gráfica</li>
+               </ul>
+           </div>
+       </div>
+   </div>
+
+   <div class="conceito-item">
+       <h3>Termos Essenciais</h3>
+       
+       <div class="termo">
+           <h4>Repository (Repositório)</h4>
+           <p>Container que armazena o projeto completo, incluindo arquivos, histórico e metadados.</p>
+       </div>
+
+       <div class="termo">
+           <h4>Commit</h4>
+           <p>Snapshot das mudanças no projeto em um momento específico, com uma mensagem descritiva.</p>
+       </div>
+
+       <div class="termo">
+           <h4>Branch</h4>
+           <p>Linha independente de desenvolvimento que permite trabalhar em paralelo sem afetar o código principal.</p>
+       </div>
+
+       <div class="termo">
+           <h4>Clone</h4>
+           <p>Processo de criar uma cópia local completa de um repositório remoto.</p>
+       </div>
+   </div>
+</section>
+<section id="fluxo" class="fluxo-section">
+   <h2>Fluxo de Trabalho Git/GitHub</h2>
+   
+   <div class="fluxo-item">
+       <h3>Estados dos Arquivos no Git</h3>
+       <p>No Git, os arquivos podem estar em três estados principais:</p>
+       
+       <div class="estados">
+           <div class="estado">
+               <h4>Working Directory</h4>
+               <p>Área onde você edita os arquivos. Mudanças ainda não rastreadas pelo Git.</p>
+           </div>
+           
+           <div class="estado">
+               <h4>Staging Area (Index)</h4>
+               <p>Área intermediária onde ficam as mudanças preparadas para o próximo commit.</p>
+           </div>
+           
+           <div class="estado">
+               <h4>Repository</h4>
+               <p>Onde o Git armazena permanentemente as versões dos arquivos após o commit.</p>
+           </div>
+       </div>
+   </div>
+
+   <div class="fluxo-item">
+       <h3>Comandos Básicos do Fluxo</h3>
+       
+       <div class="comando">
+           <h4>Iniciando um Repositório</h4>
+           <code>git init</code>
+           <p>Inicializa um novo repositório Git no diretório atual.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Verificando Status</h4>
+           <code>git status</code>
+           <p>Mostra o estado atual dos arquivos (modificados, staging, etc.).</p>
+       </div>
+
+       <div class="comando">
+           <h4>Adicionando Arquivos</h4>
+           <code>git add arquivo.txt</code> ou <code>git add .</code>
+           <p>Move arquivos para a staging area. O ponto adiciona todos os arquivos modificados.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Fazendo Commit</h4>
+           <code>git commit -m "mensagem do commit"</code>
+           <p>Salva as mudanças da staging area no repositório com uma mensagem descritiva.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Visualizando Histórico</h4>
+           <code>git log</code> ou <code>git log --oneline</code>
+           <p>Mostra o histórico de commits do projeto.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Verificando Diferenças</h4>
+           <code>git diff</code>
+           <p>Mostra as mudanças entre working directory e staging area.</p>
+       </div>
+   </div>
+
+   <div class="fluxo-item">
+       <h3>Trabalhando com Repositórios Remotos</h3>
+       
+       <div class="comando">
+           <h4>Clonando Repositório</h4>
+           <code>git clone https://github.com/user/repo.git</code>
+           <p>Cria uma cópia local de um repositório remoto.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Enviando Mudanças</h4>
+           <code>git push origin main</code>
+           <p>Envia commits locais para o repositório remoto.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Baixando Atualizações</h4>
+           <code>git pull origin main</code>
+           <p>Baixa e integra mudanças do repositório remoto.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Verificando Remotos</h4>
+           <code>git fetch</code>
+           <p>Baixa mudanças sem integrar automaticamente.</p>
+       </div>
+   </div>
+
+   <div class="fluxo-item">
+       <h3>Workflow com Branches</h3>
+       
+       <div class="comando">
+           <h4>Criando Branch</h4>
+           <code>git branch nome-da-branch</code>
+           <p>Cria uma nova branch baseada na branch atual.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Mudando de Branch</h4>
+           <code>git checkout nome-da-branch</code>
+           <p>Muda para a branch especificada.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Criando e Mudando</h4>
+           <code>git checkout -b nova-branch</code>
+           <p>Cria uma nova branch e muda para ela imediatamente.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Listando Branches</h4>
+           <code>git branch</code> ou <code>git branch -a</code>
+           <p>Lista branches locais ou todas as branches (locais e remotas).</p>
+       </div>
+
+       <div class="comando">
+           <h4>Fazendo Merge</h4>
+           <code>git merge nome-da-branch</code>
+           <p>Integra mudanças de uma branch na branch atual.</p>
+       </div>
+
+       <div class="comando">
+           <h4>Deletando Branch</h4>
+           <code>git branch -d nome-da-branch</code>
+           <p>Remove uma branch local após o merge.</p>
+       </div>
+   </div>
+
+   <div class="fluxo-item">
+       <h3>GitHub Flow - Fluxo Recomendado</h3>
+       
+       <div class="passo">
+           <h4>1. Criar Branch</h4>
+           <p>Para cada nova feature ou correção, crie uma branch específica.</p>
+       </div>
+
+       <div class="passo">
+           <h4>2. Fazer Commits</h4>
+           <p>Adicione commits com mensagens claras e semânticas.</p>
+       </div>
+
+       <div class="passo">
+           <h4>3. Abrir Pull Request</h4>
+           <p>No GitHub, abra um PR para revisar e discutir as mudanças.</p>
+       </div>
+
+       <div class="passo">
+           <h4>4. Revisar Código</h4>
+           <p>Outros desenvolvedores revisam e sugerem melhorias.</p>
+       </div>
+
+       <div class="passo">
+           <h4>5. Fazer Merge</h4>
+           <p>Após aprovação, as mudanças são integradas à branch principal.</p>
+       </div>
+
+       <div class="passo">
+           <h4>6. Deletar Branch</h4>
+           <p>Remove a branch da feature após o merge bem-sucedido.</p>
+       </div>
+   </div>
+
+   <div class="fluxo-item">
+       <h3>Pull Requests no GitHub</h3>
+       <p>Pull Requests (PRs) são o coração da colaboração no GitHub. Eles permitem:</p>
+       
+       <ul>
+           <li><strong>Revisão de código:</strong> Outros desenvolvedores podem revisar suas mudanças</li>
+           <li><strong>Discussão:</strong> Comentários e sugestões sobre o código</li>
+           <li><strong>Testes automatizados:</strong> Execução de CI/CD antes do merge</li>
+           <li><strong>Histórico:</strong> Documentação das mudanças e decisões tomadas</li>
+       </ul>
+       
+       <h4>Como criar um PR:</h4>
+       <ol>
+           <li>Push da sua branch para o GitHub</li>
+           <li>Navegar até o repositório no GitHub</li>
+           <li>Clicar em "Compare & pull request"</li>
+           <li>Adicionar título e descrição detalhada</li>
+           <li>Selecionar reviewers e assignees</li>
+           <li>Criar o pull request</li>
+       </ol>
+   </div>
+</section>
+<section id="conflitos" class="conflitos-section">
+   <h2>Resolução de Conflitos</h2>
+   
+   <div class="conflito-item">
+       <h3>O que são Conflitos no Git?</h3>
+       <p>Conflitos ocorrem quando o Git não consegue automaticamente mesclar mudanças de diferentes branches ou commits. Isso acontece quando as mesmas linhas de um arquivo foram modificadas de formas diferentes em branches distintas.</p>
+       
+       <div class="exemplo-conflito">
+           <h4>Situação típica de conflito:</h4>
+           <ul>
+               <li>Desenvolvedor A modifica a linha 10 do arquivo index.html</li>
+               <li>Desenvolvedor B também modifica a linha 10 do mesmo arquivo</li>
+               <li>Ao fazer merge, o Git não sabe qual versão manter</li>
+           </ul>
+       </div>
+   </div>
+
+   <div class="conflito-item">
+       <h3>Quando Conflitos Ocorrem</h3>
+       
+       <div class="situacao">
+           <h4>Durante Merge</h4>
+           <p>Ao tentar unir duas branches que modificaram as mesmas linhas de código.</p>
+       </div>
+
+       <div class="situacao">
+           <h4>Durante Pull</h4>
+           <p>Quando você tenta baixar mudanças do repositório remoto que conflitam com seu trabalho local.</p>
+       </div>
+
+       <div class="situacao">
+           <h4>Durante Rebase</h4>
+           <p>Ao aplicar commits de uma branch sobre outra, linha por linha.</p>
+       </div>
+
+       <div class="situacao">
+           <h4>Durante Cherry-pick</h4>
+           <p>Quando você aplica um commit específico que conflita com o estado atual.</p>
+       </div>
+   </div>
+
+   <div class="conflito-item">
+       <h3>Como Identificar Conflitos</h3>
+       
+       <div class="identificacao">
+           <h4>Mensagem de Erro</h4>
+           <code>CONFLICT (content): Merge conflict in arquivo.html</code>
+           <p>O Git informa claramente quais arquivos têm conflitos.</p>
+       </div>
+
+       <div class="identificacao">
+           <h4>Status do Repositório</h4>
+           <code>git status</code>
+           <p>Mostra arquivos marcados como "both modified" ou "unmerged paths".</p>
+       </div>
+
+       <div class="identificacao">
+           <h4>Marcadores no Arquivo</h4>
+           <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+&lt;h1&gt;Título da Branch Atual&lt;/h1&gt;
+=======
+&lt;h1&gt;Título da Outra Branch&lt;/h1&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; nome-da-branch</code></pre>
+           <p>O Git adiciona esses marcadores para mostrar as versões conflitantes.</p>
+       </div>
+   </div>
+
+   <div class="conflito-item">
+       <h3>Como Resolver Conflitos</h3>
+       
+       <div class="passo-resolucao">
+           <h4>1. Identificar Arquivos Conflitantes</h4>
+           <code>git status</code>
+           <p>Lista todos os arquivos que precisam ser resolvidos.</p>
+       </div>
+
+       <div class="passo-resolucao">
+           <h4>2. Abrir o Arquivo</h4>
+           <p>Use seu editor de código preferido para visualizar os conflitos.</p>
+       </div>
+
+       <div class="passo-resolucao">
+           <h4>3. Escolher a Resolução</h4>
+           <p>Você pode:</p>
+           <ul>
+               <li>Manter apenas a versão HEAD (branch atual)</li>
+               <li>Manter apenas a versão incoming (outra branch)</li>
+               <li>Combinar ambas as versões</li>
+               <li>Escrever uma solução completamente nova</li>
+           </ul>
+       </div>
+
+       <div class="passo-resolucao">
+           <h4>4. Remover Marcadores</h4>
+           <p>Delete todas as linhas com <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code> e <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>.</p>
+       </div>
+
+       <div class="passo-resolucao">
+           <h4>5. Testar a Resolução</h4>
+           <p>Certifique-se de que o código funciona corretamente após a resolução.</p>
+       </div>
+
+       <div class="passo-resolucao">
+           <h4>6. Adicionar e Commitar</h4>
+           <code>git add arquivo-resolvido.html</code><br>
+           <code>git commit -m "resolve: conflito na seção principal"</code>
+           <p>Marque o conflito como resolvido e finalize o merge.</p>
+       </div>
+   </div>
+
+   <div class="conflito-item">
+       <h3>Ferramentas para Resolução</h3>
+       
+       <div class="ferramenta">
+           <h4>Editor de Código</h4>
+           <p><strong>VS Code, Sublime, Atom:</strong> Muitos editores destacam conflitos e oferecem botões para aceitar mudanças rapidamente.</p>
+       </div>
+
+       <div class="ferramenta">
+           <h4>Git Mergetool</h4>
+           <code>git mergetool</code>
+           <p>Abre uma ferramenta visual para resolver conflitos (como vimdiff, meld, ou kdiff3).</p>
+       </div>
+
+       <div class="ferramenta">
+           <h4>GitHub Desktop</h4>
+           <p>Interface gráfica que facilita a visualização e resolução de conflitos.</p>
+       </div>
+
+       <div class="ferramenta">
+           <h4>IDEs</h4>
+           <p><strong>IntelliJ, Eclipse:</strong> IDEs oferecem ferramentas avançadas de merge com interface gráfica.</p>
+       </div>
+   </div>
+
+   <div class="conflito-item">
+       <h3>Comandos Úteis Durante Conflitos</h3>
+       
+       <div class="comando-conflito">
+           <h4>Abortar Merge</h4>
+           <code>git merge --abort</code>
+           <p>Cancela o merge e volta ao estado anterior.</p>
+       </div>
+
+       <div class="comando-conflito">
+           <h4>Visualizar Conflito</h4>
+           <code>git diff</code>
+           <p>Mostra as diferenças entre as versões conflitantes.</p>
+       </div>
+
+       <div class="comando-conflito">
+           <h4>Ver Histórico do Arquivo</h4>
+           <code>git log --follow arquivo.html</code>
+           <p>Mostra o histórico de mudanças do arquivo específico.</p>
+       </div>
+
+       <div class="comando-conflito">
+           <h4>Continuar Rebase</h4>
+           <code>git rebase --continue</code>
+           <p>Continua o rebase após resolver conflitos.</p>
+       </div>
+   </div>
+
+   <div class="conflito-item">
+       <h3>Estratégias de Prevenção</h3>
+       
+       <div class="prevencao">
+           <h4>Comunicação da Equipe</h4>
+           <p>Converse com a equipe sobre quem está trabalhando em quais arquivos.</p>
+       </div>
+
+       <div class="prevencao">
+           <h4>Pull Frequente</h4>
+           <code>git pull origin develop</code>
+           <p>Mantenha sua branch atualizada com as mudanças mais recentes.</p>
+       </div>
+
+       <div class="prevencao">
+           <h4>Commits Pequenos</h4>
+           <p>Faça commits menores e mais frequentes para reduzir o escopo dos conflitos.</p>
+       </div>
+
+       <div class="prevencao">
+           <h4>Branches de Curta Duração</h4>
+           <p>Evite branches que ficam muito tempo sem ser mergeadas.</p>
+       </div>
+
+       <div class="prevencao">
+           <h4>Revisão de Código</h4>
+           <p>Use Pull Requests para revisar mudanças antes do merge final.</p>
+       </div>
+
+       <div class="prevencao">
+           <h4>Formatação Consistente</h4>
+           <p>Use ferramentas como Prettier ou ESLint para manter formatação uniforme.</p>
+       </div>
+   </div>
+
+   <div class="conflito-item">
+       <h3>Exemplo Prático de Resolução</h3>
+       
+       <div class="exemplo-pratico">
+           <h4>Antes da Resolução:</h4>
+           <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+&lt;h1&gt;Guia Completo de Git&lt;/h1&gt;
+&lt;p&gt;Este é um guia sobre controle de versão.&lt;/p&gt;
+=======
+&lt;h1&gt;Manual de Git e GitHub&lt;/h1&gt;
+&lt;p&gt;Manual prático para desenvolvedores.&lt;/p&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feat/nova-introducao</code></pre>
+           
+           <h4>Após a Resolução:</h4>
+           <pre><code>&lt;h1&gt;Guia Completo de Git e GitHub&lt;/h1&gt;
+&lt;p&gt;Manual prático sobre controle de versão para desenvolvedores.&lt;/p&gt;</code></pre>
+           
+           <p>Neste exemplo, combinamos o melhor de ambas as versões: o título mais completo da primeira versão com a descrição mais específica da segunda.</p>
+       </div>
+   </div>
+</section>
+</body>
+</html>
